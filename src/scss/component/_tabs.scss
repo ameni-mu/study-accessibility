@@ -1,0 +1,49 @@
+@use "sass:math";
+
+@use "./sugaya_set" as *;
+
+.tabs {
+
+  &__tablist {
+    width: 400px;
+    display: flex;
+    column-gap: 2px;
+    box-sizing: border-box;
+  }
+
+  &__tab {
+    flex: 1;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    padding: 5px;
+    cursor: pointer;
+    &[aria-selected="true"] {
+      background-color: #fff;
+    }
+    &[aria-selected="false"] {
+      background-color: #ddd;
+    }
+  }
+
+  &__panel-container {
+    background-color: #fff;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    box-sizing: border-box;
+    width: 400px;
+    padding: 20px 16px 16px 16px;
+  }
+
+  &__panel {
+    &[aria-hidden="true"] {
+      display: none;
+    }
+    &[aria-hidden="false"] {
+      display: block;
+    }
+  }
+}

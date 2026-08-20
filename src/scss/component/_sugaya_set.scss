@@ -1,0 +1,39 @@
+@use "sass:math";
+
+/////////////////////////////////////////////
+// ===========================
+// mixin
+// ===========================
+@mixin max($break-point) {
+  @media screen and (max-width: $break-point) {
+    @content;
+  }
+}
+@mixin min($break-point) {
+  @media screen and (min-width: $break-point) {
+    @content;
+  }
+}
+@mixin mid($break-point-min, $break-point-max) {
+  @media screen and (min-width: $break-point-min) and (max-width: $break-point-max) {
+    @content;
+  }
+}
+@function get_vw($size, $viewport: 599px) {
+  //$rate: 100 / $viewport; /はsass的に廃止
+  $rate: math.div(100, $viewport);
+  @return $rate * $size * 1vw;
+}
+@function get_per($size, $viewport: 599px) {
+  //$rate: 100 / $viewport; /はsass的に廃止
+  $rate: math.div(100, $viewport);
+  @return $rate * $size * 1%;
+}
+@mixin fz_vw($font_size: 12px, $viewport: 599px) {
+  font-size: $font_size * 1;
+  font-size: get_vw($font_size, $viewport);
+}
+// px → rem に変換する関数
+@function px-to-rem($px, $base: $base-font-size) {
+  @return ($px / $base) * 1rem;
+}

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>目次｜アクセシビリティメモ</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <h1>アクセシビリティ自由研究メモ</h1>
+
+    <%- include('../partials/nav', {}) %>
+
+    <div class="yougo">
+      <h2>専門用語</h2>
+      <dl>
+        <dt>
+          <p class="ttl">WCAG</p>
+          <p class="yomi">ダブリュシーエージー/ウィーキャグ</p>
+        </dt>
+        <dd>
+          <p>
+            <span class="em">web content Accessibility Guidenlines</span><br>
+            Webアクセシビリティの国際ガイドライン。<br>
+            目的：障害の有無に関わらず、全ての利用者がウェブコンテンツを利用出来るようにすること。<br>
+            <br>
+            2008年のWCAG2.0勧告以降、WCAG2.1(2018年勧告)、WCAG2.2(2023年勧告)とアップデートされている。
+          </p>
+        </dd>
+
+        <dt>
+          <p class="ttl">ISO</p>
+          <p class="yomi">アイエスオー</p>
+        </dt>
+        <dd>
+          <p>
+            国際標準化機構。WCAGはISOに採用されている。
+          </p>
+        </dd>
+
+        <dt>
+          <p class="ttl">WAI-ARIA</p>
+          <p class="yomi">ウェイアリア</p>
+        </dt>
+        <dd>
+          <p>
+            スクリーンリーダーなど支援技術に伝えるための仕組み。<br>
+            ただし、使いすぎるのは冗長になったり分かりにくくしてしまうため注意が必要。
+          </p>
+        </dd>
+
+        <dt>
+          <p class="ttl">a11y</p>
+          <p class="yomi">エーイレブンワイ</p>
+        </dt>
+        <dd>
+          <p>
+            アクセシビリティの略称
+          </p>
+        </dd>
+
+        <dt>
+          <p class="ttl">i18n</p>
+          <p class="yomi">アイエイティーンエヌ</p>
+        </dt>
+        <dd>
+          <p>
+            internationalizationの略称
+          </p>
+        </dd>
+
+        <dt>
+          <p class="ttl">適合レベル</p>
+        </dt>
+        <dd>
+          <p>
+            WCAGでは、各達成基準を3段階の(A, AA, AAA)で分類している。<br>
+            A…最低レベル, AAA…最高レベル<br>
+            レベルは↓が考慮されて設定されている。<br>
+            ・必須性<br>
+            ・適用可能性<br>
+            ・実装難易度<br>
+            ・制約の程度(表現の自由に与える制限の大きさ)<br>
+            ・代替手段の有無(達成基準を満たせない場合の回避策があるかどうか)<br>
+          </p>
+        </dd>
+
+        <dt>
+          <p class="ttl">JIS</p>
+          <p class="yomi">ジス</p>
+        </dt>
+        <dd>
+          <p>
+            Japanese Industrial Standardsの略。日本工業規格のこと。<br>
+            日本国内で、モノやルールを統一するための基準。<br>
+            JIS X 8341-3:2016 は WCAG2.0 と一致規格。<br>
+            WCAGを日本向けに整理・採用したものがJISに採用されている。<br><br>
+            <span class="em">JIS X8341-3</span>…日本のウェブアクセシビリティに関するJIS規格。
+            <ul>
+              <li>
+                ISO → 国際基準<br>
+              </li>
+              <li>
+                JIS → 日本向けに調整した基準<br>
+              </li>
+            </ul>
+          </p>
+        </dd>
+
+        <dt>
+          <p class="ttl">みんなの公共サイト運用ガイドライン</p>
+        </dt>
+        <dd>
+          <p>
+          総務省が策定した、公的機関がwebアクセシビリティの確保・維持・向上に取り組む支援を目的とした手順書。<br>
+          適合レベルAAに準拠することを求めている。<br>
+          これを元に、適合レベルをAAとして要件に取り入れるケースが多い。
+          </p>
+        </dd>
+
+        <dt>
+          <p class="ttl">アクセシビリティサポーテッド(略称：AS)</p>
+        </dt>
+        <dd>
+          <p>
+          正しい文脈にそってhtml要素が設定されており、支援技術を有した環境で正常にサポートされている状態のこと。<br>
+          例)<br>
+          alt="猫" => OK<br>
+          alt-txt="猫" => NG<br>
+          </p>
+        </dd>
+
+        <dt>
+          <p class="ttl">WAI-ARIA</p>
+          <p class="yomi">ウェイエイリア</p>
+        </dt>
+        <dd>
+          <p>
+          htmlの文脈にそったセマンティクスな実装が出来ない場合に付与することで、支援技術をサポートできるようになる技術のこと。<br>
+          例）role="button"やrole="link",tabindex="0"の指定。<br>
+          <span class="em">
+            ただし、これらの実装に不備がある場合はWCAGの達成基準を満たせない。<br>
+            また、使いすぎは支援技術を使用するユーザーに逆に理解しにくい作りのwebページを提供することになるので、使用にあたっては注意が必要。<br>
+            あくまで、セマンティクスなHTMLコードで実現出来ないものを実装する場合のみ使用するのが原則。
+          </span>
+          </p>
+        </dd>
+
+        <dt>
+          <p class="ttl">ウェブアクセシビリティ基盤委員会(WAIC)</p>
+          <p class="yomi">ワイク</p>
+        </dt>
+        <dd>
+          <p>
+            WCAGやJISを、日本のWeb制作現場で分かりやすく使えるように整理してくれてる組織。<br>
+            アクセシビリティサポーテッド(AS)情報を公開している。<br>
+            <span class="em">ただし、必ずしも最新情報とは限らない。</span>
+          </p>
+        </dd>
+
+        <dt>
+          <p class="ttl">適合表明(Conformance Claim)</p>
+          <p class="yomi">ワイク</p>
+        </dt>
+        <dd>
+          <p>
+            ウェブコンテンツがWCAGなど、特定のアクセシビリティガイドラインに適合していることを公に表明する文書。(必須ではない)
+          </p>
+        </dd>
+
+        <dt>
+          <p class="ttl">ADA(Americans with Disabilities Act/障害を持つアメリカ人法)</p>
+        </dt>
+        <dd>
+          <p>
+            「障害があることで、不当にサービス利用を断られたり、不利になったりしないようにしましょう」という、アメリカの「障害者差別禁止法」。<br><br>
+            ドミノピザのサイトが「スクリーンリーダーで注文できない」といったことで提訴されたことがある。<br>
+            結果 → 違反を認定し、損害賠償と、サイトをWCAGに適合させる是正命令が出された。<br>
+            <br>
+            海外向けのサイトを作成するときは、ADA法で訴訟リスクが無いか、配慮が必要。
+          </p>
+        </dd>
+
+        <dt>
+          <p class="ttl">EAA(European Accessibility Act)</p>
+        </dt>
+        <dd>
+          <p>
+            ADAのヨーロッパ版。<br>同様に訴訟リスクがあるのでサイト制作時は注意が必要。
+          </p>
+        </dd>
+
+        <dt>
+          <p class="ttl">代表的な国内ガイドライン</p>
+        </dt>
+        <dd>
+          <ul>
+            <li>
+              <a href="https://www.soumu.go.jp/main_sosiki/joho_tsusin/b_free/guideline.html" target="_blank">
+                みんなの公共サイト運用ガイドライン
+              </a>
+            </li>
+            <li>
+              <a href="https://www.digital.go.jp/resources/standard_guidelines" target="_blank">
+                デジタル・ガバメント推進標準ガイドライン
+              </a>
+            </li>
+            <li>
+              <a href="https://www.digital.go.jp/resources/introduction-to-web-accessibility-guidebook" target="_blank">
+                ウェブアクセシビリティ導入ガイドブック
+              </a>
+            </li>
+          </ul>
+        </dd>
+
+
+      </dl>
+    </div>
+
+  </div>
+
+  <script src="/assets/js/main.js"></script>
+
+</body>
+</html>

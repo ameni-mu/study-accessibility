@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WAI-ARIA｜アクセシビリティメモ</title>
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+
+  <div class="container waiaria">
+
+    <h1>アクセシビリティ自由研究メモ</h1>
+
+    <%- include('../partials/nav', {}) %>
+
+    <h2>WAI-ARIAについて</h2>
+
+    <div class="header">
+      <p class="txt">
+        W3Cが策定したウェブアクセシビリティ向上のための技術仕様。<br>
+        セマンティクスなHTMLだけでは表現出来ない場合に、支援技術をサポートするための技術。<br>
+        ロール、プロパティ、ステート、の3つの主要な要素で構成されている。<br>
+        <br>
+        結果的にjsを使うような動的UIで使用することがほとんどだが、使用用途としては<span class="em">「htmlだけでは意味が伝わらない場合に使用する」。</span>
+      </p>
+    </div>
+
+    <p class="attention">
+      <span class="ttl">WAI-ARIAの注意点</span>
+      <span class="em">
+      WAI-ARIAは…<br>
+      ❌ 読めないものを読めるようにする魔法<br>
+      ⭕️ HTMLだけでは伝わらない情報を補足する仕組み<br></span>
+      <span class="default">
+        間違って使用するくらいなら、使わない方がマシ
+      </span>
+    </p>
+
+    <div class="mv">
+      <ul>
+        <li>
+          ロール<br>
+          <span>(Roles)</span>
+        </li>
+        <li>
+          プロパティ<br>
+          <span>(Properties)</span>
+        </li>
+        <li>
+          ステート<br>
+          <span>(States)</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="box">
+      <div class="headline">
+        ▼ ロール(Roles)
+      </div>
+      <p class="txt">
+        要素が何であるかの定義。<br>
+        button, dialog, navigationなど、その要素の役割を明確にする。
+      </p>
+    </div>
+
+    <div class="box">
+      <div class="headline">
+        ▼ プロパティ(Properties)
+      </div>
+      <p class="txt">
+        要素の性質や特徴を表現する。<br>
+        「この要素は何と関係しているのか」を伝えるもの。
+      </p>
+      <ul>
+        <li>
+          <p class="ttl">aria-label</p>
+          <p class="detail">
+            要素に名前を付ける。<br>
+            ボタンやリンクの中身があったとしても、別途指定する。<br>
+            （altのようなもの？）<br>
+            <span class="em">
+              ただし、自動翻訳で正しく翻訳されないことがある</span>ので自動翻訳環境のユーザーに不便を強いる可能性がある。
+          </p>
+          <div class="code-exmple">
+            例）<br>
+            <pre class="html-code">
+&lt;button aria-label="閉じる">×&lt;/button>
+            </pre>
+            → スクリーンリーダーは「閉じるボタン」と読む
+          </div>
+        </li>
+        <li>
+          <p class="ttl">aria-labelledby</p>
+          <p class="detail">
+            別要素を名前として使う。
+          </p>
+          <div class="code-exmple">
+            例）<br>
+            <pre class="html-code">
+&lt;h2 id="title">ほげタイトル&lt;/h2>
+&lt;section aria-labelledby="title">
+            </pre>
+            → スクリーンリーダーは「ほげタイトル セクション」と認識する
+          </div>
+        </li>
+        <li>
+          <p class="ttl">aria-describedby</p>
+          <p class="detail">
+            補足説明を紐付ける。
+          </p>
+          <div class="code-exmple">
+            例）<br>
+            <pre class="html-code">
+&lt;input
+  type="password"
+  aria-describedby="password-note"
+>
+&lt;p id="password-note">
+  半角英数字8文字以上
+&lt;/p>
+            </pre>
+            → スクリーンリーダーは「パスワード入力欄　半角英数字8文字以上」と読む
+          </div>
+        </li>
+        <li>
+          <p class="ttl">aria-controls</p>
+          <p class="detail">
+            このボタンが何を操作するか。
+          </p>
+          <div class="code-exmple">
+            例）<br>
+            <pre class="html-code">
+&lt;button
+  aria-expanded="false"
+  aria-controls="panel01"
+>
+  詳細を見る
+&lt;/button>
+&lt;div id="panel01">
+            </pre>
+            → 「このボタンはpanel01を操作します」という意味。
+          </div>
+        </li>
+
+
+      </ul>
+    </div>
+
+    <div class="box">
+      <div class="headline">
+        ▼ ステート(States)
+      </div>
+      <p class="txt">
+        「この要素が今どういう状態なのか」を示す。<br>
+        <span class="em">状態はユーザー操作によって切り替わるので、js処理の実装とセットで使用すること。</span>
+      </p>
+      <ul>
+        <li>
+          <p class="ttl">aria-expanded</p>
+          <p class="detail">
+            開閉状態を示す。<br>
+            ▼使用例<br>
+            ・アコーディオン<br>
+            ・ハンバーガーメニュー<br>
+            ・ツリー表示<br>
+          </p>
+          <div class="code-exmple">
+            例）↓初期状態<br>
+            <pre class="html-code">
+&lt;button
+  aria-expanded="false"
+  aria-controls="faq01"
+>
+  詳細を見る
+&lt;/button>
+            </pre>
+            ↓ボタンクリック後
+            <pre class="html-code">
+&lt;button
+  aria-expanded="true"
+  aria-controls="faq01"
+>
+  詳細を見る
+&lt;/button>
+            </pre>
+          </div>
+        </li>
+        <li>
+          <p class="ttl">aria-selected</p>
+          <p class="detail">
+            現在選択されているかどうかの指定。<br>
+            ▼使用例<br>
+            ・タブ<br>
+            ・リストボックス<br>
+            ・グリッド
+          </p>
+          <div class="code-exmple">
+            例）<br>
+            <pre class="html-code">
+&lt;button
+  role="tab"
+  aria-selected="true"
+>
+            </pre>
+          </div>
+        </li>
+        <li>
+          <p class="ttl">aria-hidden</p>
+          <p class="detail">
+            スクリーンリーダーから読まれないようにする。<br>
+            画面には表示されるけど、スクリーンリーダーには読まれなくなる。
+          </p>
+          <div class="code-exmple">
+            例）<br>
+            <pre class="html-code">
+&lt;span aria-hidden="true">
+  ほげ
+&lt;/span>
+            </pre>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+
+
+  </div>
+
+  <script src="/graphics/sugaya_accessibility_memo/js/main.js"></script>
+
+</body>
+</html>
