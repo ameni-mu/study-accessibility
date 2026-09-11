@@ -11,7 +11,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 require('dotenv').config();
 
 const targetDir = process.env.targetDir;
-const outputPath = path.resolve(__dirname, './dist/');
+const outputPath = path.resolve(__dirname, './dist/a11y/');
 const loadPath = path.resolve(__dirname, `${targetDir}/`);
 const pluginHtml = path.resolve(__dirname, `${targetDir}/plugins.config.js`);
 
@@ -89,6 +89,7 @@ module.exports = function (env, argv) {
         return `assets/js/[name].js`;
       },
       path: outputPath,
+      publicPath: "/a11y/",
       clean: true
     },
     module: {
@@ -144,7 +145,7 @@ module.exports = function (env, argv) {
       static: [
         {
           directory: path.resolve(__dirname, 'public'),
-          publicPath: '/',
+          publicPath: '/a11y/',
         },
 
         // {
@@ -154,7 +155,7 @@ module.exports = function (env, argv) {
         // }
       ],
       open: {
-        target: [`/`],
+        target: [`/a11y/`],
       },
       hot: true,
     },
